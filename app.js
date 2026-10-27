@@ -18,6 +18,8 @@
       if (state.lb && !lbs.includes(state.lb)) ok = false;
       if (c.classList.contains("tools") && active) ok = false;
       c.classList.toggle("dim", !ok);
+      const picks = (c.dataset.picks || "").split(" ");
+      c.classList.toggle("preferred", !!state.species && ok && picks.includes(state.species));
       if (ok) shown++;
     });
     count.textContent = active ? `${shown} line${shown === 1 ? "" : "s"} fit` : "";
